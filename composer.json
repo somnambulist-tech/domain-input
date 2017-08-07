@@ -1,0 +1,39 @@
+{
+    "name": "somnambulist/domain-input",
+    "type": "library",
+    "description": "A collection of Domain Input/Response classes to act as a bridge between domain and environment.",
+    "keywords": [
+        "domain",
+        "ddd",
+        "input mapping"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dave Redfern",
+            "email": "dave@scorpioframework.com"
+        }
+    ],
+    "require": {
+        "php": ">=7",
+        "somnambulist/collection": "~2.1",
+        "symfony/http-foundation": "3.3.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Somnambulist\\Domain\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Somnambulist\\Tests\\Domain\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "bin-dir": "bin"
+    }
+}
