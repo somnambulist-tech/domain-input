@@ -87,126 +87,134 @@ individual mappers and an OrderMapper aggregate used to map the whole input at o
 
 #### The main order mapper
 
-    use Somnambulist\Domain\Contracts\DataInputMapper as DataInputMapperContract;
-    class OrderMapper implements DataInputMapperContract
+```php
+use Somnambulist\Domain\Contracts\DataInputMapper as DataInputMapperContract;
+class OrderMapper implements DataInputMapperContract
+{
+
+    /**
+     * @param Input $input
+     * @param Order $entity
+     */
+    public function map(Input $input, $entity)
     {
-
-        /**
-         * @param Input $input
-         * @param Order $entity
-         */
-        public function map(Input $input, $entity)
-        {
-            $entity
-                ->setProperty($input->get('order.property'))
-                // ... do other mapping
-            ;
-        }
-
-        /**
-         * @return boolean
-         */
-        public function supports($entity)
-        {
-            return ($entity instanceof Order);
-        }
+        $entity
+            ->setProperty($input->get('order.property'))
+            // ... do other mapping
+        ;
     }
+
+    /**
+     * @return boolean
+     */
+    public function supports($entity)
+    {
+        return ($entity instanceof Order);
+    }
+}
+```
 
 #### Order item mapper
 
-    use Somnambulist\Domain\Contracts\DataInputMapper as DataInputMapperContract;
-    class OrderItemMapper implements DataInputMapperContract
+```php
+use Somnambulist\Domain\Contracts\DataInputMapper as DataInputMapperContract;
+class OrderItemMapper implements DataInputMapperContract
+{
+
+    protected $factory;
+
+    public function __construct(OrderFactory $factory)
     {
+        $this->factory = $factory;
+    }
 
-        protected $factory;
+    /**
+     * @param Input $input
+     * @param Order $entity
+     */
+    public function map(Input $input, $entity)
+    {
+        // look up existing items, or make new ones
+        foreach ($input->get('order.item') as $item) {
+            $orderItem = $this->factory->createOrderItem($entity);
 
-        public function __construct(OrderFactory $factory)
-        {
-            $this->factory = $factory;
-        }
-
-        /**
-         * @param Input $input
-         * @param Order $entity
-         */
-        public function map(Input $input, $entity)
-        {
-            // look up existing items, or make new ones
-            foreach ($input->get('order.item') as $item) {
-                $orderItem = $this->factory->createOrderItem($entity);
-
-                // item will be an array, convert to collection
-                $item = new Immutable($item);
-                $orderItem
-                    ->setSomeProperty($item->get('some_property))
-                    // ... do other mapping
-                ;
-            }
-        }
-
-        /**
-         * @return boolean
-         */
-        public function supports($entity)
-        {
-            return ($entity instanceof Order);
+            // item will be an array, convert to collection
+            $item = new Immutable($item);
+            $orderItem
+                ->setSomeProperty($item->get('some_property))
+                // ... do other mapping
+            ;
         }
     }
+
+    /**
+     * @return boolean
+     */
+    public function supports($entity)
+    {
+        return ($entity instanceof Order);
+    }
+}
+```
 
 #### Address mapper
 
-    use Contracts\AddressableEntity;
-    use Somnambulist\Domain\Contracts\DataInputMapper as DataInputMapperContract;
-    class AddressMapper implements DataInputMapperContract
+```php
+use Contracts\AddressableEntity;
+use Somnambulist\Domain\Contracts\DataInputMapper as DataInputMapperContract;
+class AddressMapper implements DataInputMapperContract
+{
+
+    /**
+     * @param Input $input
+     * @param Order $entity
+     */
+    public function map(Input $input, $entity)
     {
+        $address = new Address();
+        $address
+            ->setAddressLine1($input->get('address.address_line_1')
+            //... assign the rest
+        ;
 
-        /**
-         * @param Input $input
-         * @param Order $entity
-         */
-        public function map(Input $input, $entity)
-        {
-            $address = new Address();
-            $address
-                ->setAddressLine1($input->get('address.address_line_1')
-                //... assign the rest
-            ;
-
-            // addresses should be value objects so we'll check if it is the same
-            // these methods will all be defined in the AddressableEntity interface.
-            // The address being a value object will have an isSameAs method.
-            if (!$entity->hasAddress() || !$entity->getAddress()->isSameAs($address)) {
-                $entity->setAddress($address);
-            }
-        }
-
-        /**
-         * @return boolean
-         */
-        public function supports($entity)
-        {
-            return ($entity instanceof AddressableEntity);
+        // addresses should be value objects so we'll check if it is the same
+        // these methods will all be defined in the AddressableEntity interface.
+        // The address being a value object will have an isSameAs method.
+        if (!$entity->hasAddress() || !$entity->getAddress()->isSameAs($address)) {
+            $entity->setAddress($address);
         }
     }
+
+    /**
+     * @return boolean
+     */
+    public function supports($entity)
+    {
+        return ($entity instanceof AddressableEntity);
+    }
+}
+```
 
 #### Putting them all together
 
-    class OrderAggregateMapper extends AggregateMapper
-    {
+```php
+class OrderAggregateMapper extends AggregateMapper
+{
 
-    }
+}
 
-    // in an input handler / command (better defined in the DI container)
-    $mapper = new OrderAggregateMapper([
-        new OrderMapper(),
-        new OrderItemMapper(new OrderFactory()),
-        new AddressMapper(),
-    ]);
+// in an input handler / command (better defined in the DI container)
+$mapper = new OrderAggregateMapper([
+    new OrderMapper(),
+    new OrderItemMapper(new OrderFactory()),
+    new AddressMapper(),
+]);
 
-    $input  = $inputFactory->createFromHttpRequest($request);
-    $entity = new Order();
+$input  = $inputFactory->createFromHttpRequest($request);
+$entity = new Order();
 
-    $mapper->map($input, $entity);
+$mapper->map($input, $entity);
+```
 
 The benefit of this approach is segregation and isolation of each piece. This makes each part
 easier to test, easier to manage and in some instances, the mapper can be re-used (e.g. address).
