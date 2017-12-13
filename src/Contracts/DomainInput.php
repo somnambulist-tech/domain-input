@@ -19,7 +19,7 @@
 namespace Somnambulist\Domain\Contracts;
 
 use Somnambulist\Collection\Immutable;
-use Illuminate\Http\UploadedFile;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class DomainInput
