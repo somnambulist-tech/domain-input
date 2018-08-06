@@ -16,7 +16,7 @@ For Http, the Symfony UploadedFile and Request are used, however any request cou
 
 Install using composer, or checkout / pull the files from github.com.
 
- * composer require somnambulist/domain-input-mapper
+ * composer require somnambulist/domain-input
 
 ### Domain Input
 
