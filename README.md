@@ -9,8 +9,8 @@ For Http, the Symfony UploadedFile and Request are used, however any request cou
 
 ### Requirements
 
- * PHP 7+
- * somnambulist/collection 2.1+
+ * PHP 7.2+
+ * somnambulist/collection 3.0+
 
 ### Installation
 

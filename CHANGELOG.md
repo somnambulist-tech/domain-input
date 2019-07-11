@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+2019-07-11
+----------
+
+ * Updated to somnambulist/collection 3
+ * strict types enabled
+ * requires Symfony 4 or above
+
 2017-12-13
 ----------
 

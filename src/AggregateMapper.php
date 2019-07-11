@@ -1,24 +1,10 @@
 <?php
-/*
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license.
- */
+
+declare(strict_types=1);
 
 namespace Somnambulist\Domain;
 
-use Somnambulist\Collection\Collection;
+use Somnambulist\Collection\MutableCollection as Collection;
 use Somnambulist\Domain\Contracts\DomainInput as DomainInputContract;
 use Somnambulist\Domain\Contracts\DomainInputMapper as DomainInputMapperContract;
 
@@ -35,7 +21,6 @@ use Somnambulist\Domain\Contracts\DomainInputMapper as DomainInputMapperContract
  *
  * @package    Somnambulist\Domain
  * @subpackage Somnambulist\Domain\AggregateMapper
- * @author     Dave Redfern
  */
 class AggregateMapper implements DomainInputMapperContract
 {
@@ -43,9 +28,7 @@ class AggregateMapper implements DomainInputMapperContract
     /**
      * @var Collection|DomainInputMapperContract[]
      */
-    protected $mappers;
-
-
+    private $mappers;
 
     /**
      * Constructor.
@@ -61,11 +44,7 @@ class AggregateMapper implements DomainInputMapperContract
         }
     }
 
-    /**
-     * @param DomainInputContract $input
-     * @param object              $entity
-     */
-    public function map(DomainInputContract $input, $entity)
+    public function map(DomainInputContract $input, object $entity): void
     {
         foreach ($this->mappers as $mapper) {
             if ($mapper->supports($entity)) {
@@ -74,48 +53,26 @@ class AggregateMapper implements DomainInputMapperContract
         }
     }
 
-    /**
-     * Override to make the aggregate mapper class specific
-     *
-     * @param object $entity
-     *
-     * @return boolean
-     */
-    public function supports($entity)
+    public function supports(object $entity): bool
     {
         return true;
     }
 
-
-
-    /**
-     * @return Collection
-     */
-    public function getMappers()
+    public function getMappers(): Collection
     {
         return $this->mappers;
     }
 
-    /**
-     * @param DomainInputMapperContract $mapper
-     *
-     * @return $this
-     */
-    public function addMapper(DomainInputMapperContract $mapper)
+    public function addMapper(DomainInputMapperContract $mapper): self
     {
         $this->mappers->add($mapper);
 
         return $this;
     }
 
-    /**
-     * @param DomainInputMapperContract $mapper
-     *
-     * @return $this
-     */
-    public function removeMapper(DomainInputMapperContract $mapper)
+    public function removeMapper(DomainInputMapperContract $mapper): self
     {
-        $this->mappers->removeElement($mapper);
+        $this->mappers->remove($mapper);
 
         return $this;
     }

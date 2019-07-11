@@ -1,25 +1,11 @@
 <?php
-/*
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license.
- */
+
+declare(strict_types=1);
 
 namespace Somnambulist\Domain;
 
-use Somnambulist\Collection\Collection;
-use Somnambulist\Collection\Immutable;
+use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Collection\FrozenCollection as Immutable;
 use Somnambulist\Domain\Contracts\DomainInput as DomainInputContract;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -32,7 +18,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @package    Somnambulist\Domain
  * @subpackage Somnambulist\Domain\DomainInput
- * @author     Dave Redfern
  */
 class DomainInput implements DomainInputContract
 {
@@ -40,14 +25,12 @@ class DomainInput implements DomainInputContract
     /**
      * @var Immutable
      */
-    protected $inputs;
+    private $inputs;
 
     /**
      * @var Immutable
      */
-    protected $files;
-
-
+    private $files;
 
     /**
      * Constructor.
@@ -57,61 +40,40 @@ class DomainInput implements DomainInputContract
      */
     public function __construct(Collection $inputs = null, Collection $files = null)
     {
-        if (!$inputs) $inputs = new Immutable();
-        if (!$files)  $files  = new Immutable();
+        if (!$inputs) $inputs = new Collection();
+        if (!$files)  $files  = new Collection();
 
         $this->inputs = $inputs->freeze();
         $this->files  = $files->freeze();
     }
 
-    /**
-     * @return Immutable
-     */
-    public function inputs()
+    public function inputs(): Immutable
     {
         return $this->inputs;
     }
 
-    /**
-     * @return Immutable
-     */
-    public function files()
+    public function files(): Immutable
     {
         return $this->files;
     }
 
     /**
-     * Alias for input
-     *
-     * @param string $key
-     * @param mixed  $default
-     *
-     * @return mixed
+     * @inheritDoc
      */
-    public function get($key, $default = null)
+    public function get(string $key, $default = null)
     {
         return $this->input($key, $default);
     }
 
-    /**
-     * @param string $key
-     *
-     * @return boolean
-     */
-    public function has($key)
+    public function has(string $key): bool
     {
         return $this->inputs->has($key);
     }
 
     /**
-     * Fetch an input parameter
-     *
-     * @param string $key
-     * @param mixed  $default
-     *
-     * @return mixed
+     * @inheritDoc
      */
-    public function input($key, $default = null)
+    public function input(string $key, $default = null)
     {
         $return = $this->inputs->get($key, $default);
 
@@ -123,13 +85,9 @@ class DomainInput implements DomainInputContract
     }
 
     /**
-     * Get an uploaded file by parameter name
-     *
-     * @param string $key
-     *
-     * @return UploadedFile
+     * @inheritDoc
      */
-    public function file($key)
+    public function file(string $key): ?UploadedFile
     {
         return $this->files->get($key);
     }

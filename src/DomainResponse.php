@@ -1,25 +1,11 @@
 <?php
-/*
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * This software consists of voluntary contributions made by many individuals
- * and is licensed under the MIT license.
- */
+
+declare(strict_types=1);
 
 namespace Somnambulist\Domain;
 
-use Somnambulist\Collection\Collection;
-use Somnambulist\Collection\Immutable;
+use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Collection\FrozenCollection as Immutable;
 use Somnambulist\Domain\Contracts\DomainInput as DomainInputContract;
 use Somnambulist\Domain\Contracts\DomainResponse as DomainResponseContract;
 
@@ -28,7 +14,6 @@ use Somnambulist\Domain\Contracts\DomainResponse as DomainResponseContract;
  *
  * @package    Somnambulist\Domain
  * @subpackage Somnambulist\Domain\DomainResponse
- * @author     Dave Redfern
  */
 class DomainResponse implements DomainResponseContract
 {
@@ -36,24 +21,22 @@ class DomainResponse implements DomainResponseContract
     /**
      * @var Immutable
      */
-    protected $data;
+    private $data;
 
     /**
      * @var DomainInputContract
      */
-    protected $input;
+    private $input;
 
     /**
      * @var Immutable
      */
-    protected $messages;
+    private $messages;
 
     /**
      * @var mixed
      */
-    protected $status;
-
-
+    private $status;
 
     /**
      * Constructor.
@@ -71,10 +54,7 @@ class DomainResponse implements DomainResponseContract
         $this->status   = $status;
     }
 
-    /**
-     * @return Immutable
-     */
-    public function data()
+    public function data(): Immutable
     {
         return $this->data;
     }
@@ -84,33 +64,22 @@ class DomainResponse implements DomainResponseContract
      *
      * @return null|mixed
      */
-    public function get($key)
+    public function get(string $key)
     {
         return $this->data->get($key);
     }
 
-    /**
-     * @param string $key
-     *
-     * @return boolean
-     */
-    public function has($key)
+    public function has(string $key): bool
     {
         return $this->data->has($key);
     }
 
-    /**
-     * @return DomainInputContract
-     */
-    public function input()
+    public function input(): DomainInputContract
     {
         return $this->input;
     }
 
-    /**
-     * @return Immutable
-     */
-    public function messages()
+    public function messages(): Immutable
     {
         return $this->messages;
     }

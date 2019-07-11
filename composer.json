@@ -15,12 +15,12 @@
         }
     ],
     "require": {
-        "php": ">=7",
-        "somnambulist/collection": "~2.1",
-        "symfony/http-foundation": "^3.3|^4.0"
+        "php": ">=7.2",
+        "somnambulist/collection": "~3.0",
+        "symfony/http-foundation": "^4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~6.2"
+        "phpunit/phpunit": "~8.0"
     },
     "autoload": {
         "psr-4": {
@@ -33,7 +33,6 @@
         }
     },
     "config": {
-        "preferred-install": "dist",
-        "bin-dir": "bin"
+        "preferred-install": "dist"
     }
 }
