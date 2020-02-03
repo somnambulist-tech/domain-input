@@ -1,5 +1,7 @@
 ## Domain Input Mapper Library
 
+[![GitHub Actions Build Status](https://github.com/somnambulist-tech/domain-input/workflows/tests/badge.svg)](https://github.com/somnambulist-tech/domain-input/actions?query=workflow%3Atests)
+
 This library provides an abstraction between a request object e.g. Http\Request and your domain entities.
 Instead of passing the request directly, it is converted to a DomainInput object that contains the
 information to be mapped to the domain objects. The domain input contains read-only collections of the
