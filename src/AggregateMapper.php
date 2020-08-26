@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Domain;
 
@@ -25,16 +23,8 @@ use Somnambulist\Domain\Contracts\DomainInputMapper as DomainInputMapperContract
 class AggregateMapper implements DomainInputMapperContract
 {
 
-    /**
-     * @var Collection|DomainInputMapperContract[]
-     */
-    private $mappers;
+    private Collection $mappers;
 
-    /**
-     * Constructor.
-     *
-     * @param array|DomainInputMapperContract[] $mappers
-     */
     public function __construct(array $mappers = [])
     {
         $this->mappers = new Collection();

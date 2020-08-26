@@ -1,11 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Domain;
 
+use Somnambulist\Collection\Contracts\Immutable;
 use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Collection\FrozenCollection as Immutable;
 use Somnambulist\Domain\Contracts\DomainInput as DomainInputContract;
 use Somnambulist\Domain\Contracts\DomainResponse as DomainResponseContract;
 
@@ -18,34 +16,15 @@ use Somnambulist\Domain\Contracts\DomainResponse as DomainResponseContract;
 class DomainResponse implements DomainResponseContract
 {
 
-    /**
-     * @var Immutable
-     */
-    private $data;
-
-    /**
-     * @var DomainInputContract
-     */
-    private $input;
-
-    /**
-     * @var Immutable
-     */
-    private $messages;
+    private DomainInputContract $input;
+    private Immutable $data;
+    private Immutable $messages;
 
     /**
      * @var mixed
      */
     private $status;
 
-    /**
-     * Constructor.
-     *
-     * @param DomainInputContract $input
-     * @param Collection          $data
-     * @param Collection          $messages
-     * @param mixed               $status
-     */
     public function __construct(DomainInputContract $input, Collection $data, Collection $messages, $status)
     {
         $this->input    = $input;
@@ -54,16 +33,21 @@ class DomainResponse implements DomainResponseContract
         $this->status   = $status;
     }
 
+    public function __set($name, $value)
+    {
+
+    }
+
+    public function __unset($name)
+    {
+
+    }
+
     public function data(): Immutable
     {
         return $this->data;
     }
 
-    /**
-     * @param string $key
-     *
-     * @return null|mixed
-     */
     public function get(string $key)
     {
         return $this->data->get($key);
@@ -84,9 +68,6 @@ class DomainResponse implements DomainResponseContract
         return $this->messages;
     }
 
-    /**
-     * @return mixed
-     */
     public function status()
     {
         return $this->status;

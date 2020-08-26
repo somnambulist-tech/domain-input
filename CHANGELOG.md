@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+2020-08-26
+----------
+
+ * require PHP 7.4
+ * require Symfony 5.X
+ * change return types to use the Immutable interface instead of FrozenCollection
+
 2019-07-11
 ----------
 

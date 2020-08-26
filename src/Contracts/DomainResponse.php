@@ -1,10 +1,8 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Domain\Contracts;
 
-use Somnambulist\Collection\FrozenCollection as Immutable;
+use Somnambulist\Collection\Contracts\Immutable;
 
 /**
  * Interface DomainResponse

@@ -1,11 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Somnambulist\Domain;
 
+use Somnambulist\Collection\Contracts\Immutable;
 use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Collection\FrozenCollection as Immutable;
 use Somnambulist\Domain\Contracts\DomainInput as DomainInputContract;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -22,22 +20,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class DomainInput implements DomainInputContract
 {
 
-    /**
-     * @var Immutable
-     */
-    private $inputs;
+    private Immutable $inputs;
+    private Immutable $files;
 
-    /**
-     * @var Immutable
-     */
-    private $files;
-
-    /**
-     * Constructor.
-     *
-     * @param Collection $inputs
-     * @param Collection $files
-     */
     public function __construct(Collection $inputs = null, Collection $files = null)
     {
         if (!$inputs) $inputs = new Collection();
@@ -45,6 +30,16 @@ class DomainInput implements DomainInputContract
 
         $this->inputs = $inputs->freeze();
         $this->files  = $files->freeze();
+    }
+
+    public function __set($name, $value)
+    {
+
+    }
+
+    public function __unset($name)
+    {
+
     }
 
     public function inputs(): Immutable
@@ -57,9 +52,6 @@ class DomainInput implements DomainInputContract
         return $this->files;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function get(string $key, $default = null)
     {
         return $this->input($key, $default);
@@ -70,9 +62,6 @@ class DomainInput implements DomainInputContract
         return $this->inputs->has($key);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function input(string $key, $default = null)
     {
         $return = $this->inputs->get($key, $default);
@@ -84,9 +73,6 @@ class DomainInput implements DomainInputContract
         return $return;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function file(string $key): ?UploadedFile
     {
         return $this->files->get($key);
