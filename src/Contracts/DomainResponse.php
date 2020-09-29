@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Somnambulist\Domain\Contracts;
+namespace Somnambulist\Components\Domain\Contracts;
 
 use Somnambulist\Collection\Contracts\Immutable;
 
@@ -12,8 +12,8 @@ use Somnambulist\Collection\Contracts\Immutable;
  *
  * Both data and messages should be immutable collections.
  *
- * @package    Somnambulist\Domain\Contracts
- * @subpackage Somnambulist\Domain\Contracts\DomainResponse
+ * @package    Somnambulist\Components\Domain\Contracts
+ * @subpackage Somnambulist\Components\Domain\Contracts\DomainResponse
  */
 interface DomainResponse
 {

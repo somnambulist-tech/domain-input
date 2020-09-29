@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Somnambulist\Domain\Contracts;
+namespace Somnambulist\Components\Domain\Contracts;
 
-use Somnambulist\Domain\Contracts\DomainInput as DomainInputContract;
+use Somnambulist\Components\Domain\Contracts\DomainInput as DomainInputContract;
 
 /**
  * Interface DomainInputMapper
  *
- * @package    Somnambulist\Domain\Contracts
- * @subpackage Somnambulist\Domain\Contracts\DomainInputMapper
+ * @package    Somnambulist\Components\Domain\Contracts
+ * @subpackage Somnambulist\Components\Domain\Contracts\DomainInputMapper
  */
 interface DomainInputMapper
 {

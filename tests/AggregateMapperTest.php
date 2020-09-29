@@ -1,17 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace Somnambulist\Tests\Domain;
+namespace Somnambulist\Components\Domain\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Domain\AggregateMapper;
-use Somnambulist\Domain\Contracts\DomainInputMapper;
-use Somnambulist\Domain\DomainInput;
+use Somnambulist\Components\Domain\AggregateMapper;
+use Somnambulist\Components\Domain\Contracts\DomainInputMapper;
+use Somnambulist\Components\Domain\DomainInput;
 
 /**
  * Class AggregateMapperTest
  *
- * @package    Somnambulist\Tests\Domain
- * @subpackage Somnambulist\Tests\Domain\AggregateMapperTest
+ * @package    Somnambulist\Components\Domain\Tests
+ * @subpackage Somnambulist\Components\Domain\Tests\AggregateMapperTest
  */
 class AggregateMapperTest extends TestCase
 {

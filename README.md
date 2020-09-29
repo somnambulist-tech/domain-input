@@ -90,7 +90,7 @@ individual mappers and an OrderMapper aggregate used to map the whole input at o
 #### The main order mapper
 
 ```php
-use Somnambulist\Domain\Contracts\DataInputMapper as DataInputMapperContract;
+use Somnambulist\Components\Domain\Contracts\DataInputMapper as DataInputMapperContract;
 class OrderMapper implements DataInputMapperContract
 {
 
@@ -119,7 +119,7 @@ class OrderMapper implements DataInputMapperContract
 #### Order item mapper
 
 ```php
-use Somnambulist\Domain\Contracts\DataInputMapper as DataInputMapperContract;
+use Somnambulist\Components\Domain\Contracts\DataInputMapper as DataInputMapperContract;
 class OrderItemMapper implements DataInputMapperContract
 {
 
@@ -162,8 +162,7 @@ class OrderItemMapper implements DataInputMapperContract
 #### Address mapper
 
 ```php
-use Contracts\AddressableEntity;
-use Somnambulist\Domain\Contracts\DataInputMapper as DataInputMapperContract;
+use Contracts\AddressableEntity;use Somnambulist\Components\Domain\Contracts\DataInputMapper as DataInputMapperContract;
 class AddressMapper implements DataInputMapperContract
 {
 

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Somnambulist\Domain;
+namespace Somnambulist\Components\Domain;
 
 use Somnambulist\Collection\Contracts\Immutable;
 use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Domain\Contracts\DomainInput as DomainInputContract;
+use Somnambulist\Components\Domain\Contracts\DomainInput as DomainInputContract;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -14,8 +14,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * the input / files. This container is read-only and should not be modified
  * once created.
  *
- * @package    Somnambulist\Domain
- * @subpackage Somnambulist\Domain\DomainInput
+ * @package    Somnambulist\Components\Domain
+ * @subpackage Somnambulist\Components\Domain\DomainInput
  */
 class DomainInput implements DomainInputContract
 {

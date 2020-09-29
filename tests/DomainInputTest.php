@@ -1,18 +1,18 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace Somnambulist\Tests\Domain;
+namespace Somnambulist\Components\Domain\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Collection\MutableCollection as Collection;
 use Somnambulist\Collection\FrozenCollection as Immutable;
-use Somnambulist\Domain\DomainInput;
+use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Domain\DomainInput;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class DomainInputTest
  *
- * @package    Somnambulist\Tests\Domain
- * @subpackage Somnambulist\Tests\Domain\DomainInputTest
+ * @package    Somnambulist\Components\Domain\Tests
+ * @subpackage Somnambulist\Components\Domain\Tests\DomainInputTest
  */
 class DomainInputTest extends TestCase
 {

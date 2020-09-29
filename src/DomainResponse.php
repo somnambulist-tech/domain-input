@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace Somnambulist\Domain;
+namespace Somnambulist\Components\Domain;
 
 use Somnambulist\Collection\Contracts\Immutable;
 use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Domain\Contracts\DomainInput as DomainInputContract;
-use Somnambulist\Domain\Contracts\DomainResponse as DomainResponseContract;
+use Somnambulist\Components\Domain\Contracts\DomainInput as DomainInputContract;
+use Somnambulist\Components\Domain\Contracts\DomainResponse as DomainResponseContract;
 
 /**
  * Class DomainResponse
  *
- * @package    Somnambulist\Domain
- * @subpackage Somnambulist\Domain\DomainResponse
+ * @package    Somnambulist\Components\Domain
+ * @subpackage Somnambulist\Components\Domain\DomainResponse
  */
 class DomainResponse implements DomainResponseContract
 {

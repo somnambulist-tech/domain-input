@@ -1,25 +1,22 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace Somnambulist\Tests\Domain;
+namespace Somnambulist\Components\Domain\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Somnambulist\Domain\DomainInput;
-use Somnambulist\Domain\DomainInputFactory;
+use Somnambulist\Components\Domain\DomainInput;
+use Somnambulist\Components\Domain\DomainInputFactory;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class DomainInputFactoryTest
  *
- * @package    Somnambulist\Tests\Domain
- * @subpackage Somnambulist\Tests\Domain\DomainInputFactoryTest
+ * @package    Somnambulist\Components\Domain\Tests
+ * @subpackage Somnambulist\Components\Domain\Tests\DomainInputFactoryTest
  */
 class DomainInputFactoryTest extends TestCase
 {
 
-    /**
-     * @var DomainInputFactory
-     */
-    protected $factory;
+    protected ?DomainInputFactory $factory = null;
 
     protected function setUp(): void
     {

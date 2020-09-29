@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Somnambulist\Domain;
+namespace Somnambulist\Components\Domain;
 
 use Somnambulist\Collection\MutableCollection as Collection;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * Creates domain input transfer objects from various contexts / sources.
  *
- * @package    Somnambulist\Domain
- * @subpackage Somnambulist\Domain\DomainInputFactory
+ * @package    Somnambulist\Components\Domain
+ * @subpackage Somnambulist\Components\Domain\DomainInputFactory
  */
 class DomainInputFactory
 {

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Somnambulist\Domain;
+namespace Somnambulist\Components\Domain;
 
 use Somnambulist\Collection\MutableCollection as Collection;
-use Somnambulist\Domain\Contracts\DomainInput as DomainInputContract;
-use Somnambulist\Domain\Contracts\DomainInputMapper as DomainInputMapperContract;
+use Somnambulist\Components\Domain\Contracts\DomainInput as DomainInputContract;
+use Somnambulist\Components\Domain\Contracts\DomainInputMapper as DomainInputMapperContract;
 
 /**
  * Class AggregateMapper
@@ -17,8 +17,8 @@ use Somnambulist\Domain\Contracts\DomainInputMapper as DomainInputMapperContract
  *  * image/file handling
  *  * encryption/decryption etc.
  *
- * @package    Somnambulist\Domain
- * @subpackage Somnambulist\Domain\AggregateMapper
+ * @package    Somnambulist\Components\Domain
+ * @subpackage Somnambulist\Components\Domain\AggregateMapper
  */
 class AggregateMapper implements DomainInputMapperContract
 {
