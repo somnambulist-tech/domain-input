@@ -2,7 +2,7 @@
 
 namespace Somnambulist\Components\Domain;
 
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Domain\Contracts\DomainInput as DomainInputContract;
 use Somnambulist\Components\Domain\Contracts\DomainInputMapper as DomainInputMapperContract;
 

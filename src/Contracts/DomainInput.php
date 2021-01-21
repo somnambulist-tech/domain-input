@@ -2,7 +2,7 @@
 
 namespace Somnambulist\Components\Domain\Contracts;
 
-use Somnambulist\Collection\Contracts\Immutable;
+use Somnambulist\Components\Collection\Contracts\Immutable;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -40,7 +40,7 @@ interface DomainInput
      *
      * @return mixed
      */
-    public function get(string $key, $default = null);
+    public function get(string $key, mixed $default = null): mixed;
 
     /**
      * Fetch an input parameter
@@ -50,14 +50,14 @@ interface DomainInput
      *
      * @return mixed
      */
-    public function input(string $key, $default = null);
+    public function input(string $key, mixed $default = null): mixed;
 
     /**
      * Get an uploaded file by parameter name
      *
      * @param string $key
      *
-     * @return UploadedFile
+     * @return UploadedFile|null
      */
     public function file(string $key): ?UploadedFile;
 }

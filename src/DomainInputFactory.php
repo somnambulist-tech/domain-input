@@ -2,7 +2,7 @@
 
 namespace Somnambulist\Components\Domain;
 
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

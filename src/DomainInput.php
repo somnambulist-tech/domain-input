@@ -2,8 +2,8 @@
 
 namespace Somnambulist\Components\Domain;
 
-use Somnambulist\Collection\Contracts\Immutable;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\Contracts\Immutable;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Domain\Contracts\DomainInput as DomainInputContract;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -52,7 +52,7 @@ class DomainInput implements DomainInputContract
         return $this->files;
     }
 
-    public function get(string $key, $default = null)
+    public function get(string $key, mixed $default = null): mixed
     {
         return $this->input($key, $default);
     }
@@ -62,7 +62,7 @@ class DomainInput implements DomainInputContract
         return $this->inputs->has($key);
     }
 
-    public function input(string $key, $default = null)
+    public function input(string $key, mixed $default = null): mixed
     {
         $return = $this->inputs->get($key, $default);
 

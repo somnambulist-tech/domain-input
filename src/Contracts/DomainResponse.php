@@ -2,7 +2,7 @@
 
 namespace Somnambulist\Components\Domain\Contracts;
 
-use Somnambulist\Collection\Contracts\Immutable;
+use Somnambulist\Components\Collection\Contracts\Immutable;
 
 /**
  * Interface DomainResponse
@@ -30,9 +30,9 @@ interface DomainResponse
      *
      * @param string $key
      *
-     * @return mixed|null
+     * @return mixed
      */
-    public function get(string $key);
+    public function get(string $key): mixed;
 
     /**
      * Returns true if response has this data
@@ -41,7 +41,7 @@ interface DomainResponse
      *
      * @return boolean
      */
-    public function has(string $key);
+    public function has(string $key): bool;
 
     /**
      * Returns the originating DomainInput object
@@ -62,6 +62,6 @@ interface DomainResponse
      *
      * @return mixed
      */
-    public function status();
+    public function status(): mixed;
 
 }

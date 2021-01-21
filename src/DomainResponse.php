@@ -2,8 +2,8 @@
 
 namespace Somnambulist\Components\Domain;
 
-use Somnambulist\Collection\Contracts\Immutable;
-use Somnambulist\Collection\MutableCollection as Collection;
+use Somnambulist\Components\Collection\Contracts\Immutable;
+use Somnambulist\Components\Collection\MutableCollection as Collection;
 use Somnambulist\Components\Domain\Contracts\DomainInput as DomainInputContract;
 use Somnambulist\Components\Domain\Contracts\DomainResponse as DomainResponseContract;
 
@@ -19,11 +19,7 @@ class DomainResponse implements DomainResponseContract
     private DomainInputContract $input;
     private Immutable $data;
     private Immutable $messages;
-
-    /**
-     * @var mixed
-     */
-    private $status;
+    private mixed $status;
 
     public function __construct(DomainInputContract $input, Collection $data, Collection $messages, $status)
     {
@@ -48,7 +44,7 @@ class DomainResponse implements DomainResponseContract
         return $this->data;
     }
 
-    public function get(string $key)
+    public function get(string $key): mixed
     {
         return $this->data->get($key);
     }
@@ -68,7 +64,7 @@ class DomainResponse implements DomainResponseContract
         return $this->messages;
     }
 
-    public function status()
+    public function status(): mixed
     {
         return $this->status;
     }

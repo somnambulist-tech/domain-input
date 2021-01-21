@@ -11,8 +11,8 @@ For Http, the Symfony UploadedFile and Request are used, however any request cou
 
 ### Requirements
 
- * PHP 7.4+
- * somnambulist/collection 3.0|4.0
+ * PHP 8.0+
+ * somnambulist/collection 5.0+
 
 ### Installation
 
@@ -162,7 +162,8 @@ class OrderItemMapper implements DataInputMapperContract
 #### Address mapper
 
 ```php
-use Contracts\AddressableEntity;use Somnambulist\Components\Domain\Contracts\DataInputMapper as DataInputMapperContract;
+use Contracts\AddressableEntity;
+use Somnambulist\Components\Domain\Contracts\DataInputMapper as DataInputMapperContract;
 class AddressMapper implements DataInputMapperContract
 {
 
