@@ -1,6 +1,10 @@
 ## Domain Input Mapper Library
 
-[![GitHub Actions Build Status](https://github.com/somnambulist-tech/domain-input/workflows/tests/badge.svg)](https://github.com/somnambulist-tech/domain-input/actions?query=workflow%3Atests)
+[![GitHub Actions Build Status](https://img.shields.io/github/workflow/status/somnambulist-tech/domain-input/tests?logo=github)](https://github.com/somnambulist-tech/domain-input/actions?query=workflow%3Atests)
+[![Issues](https://img.shields.io/github/issues/somnambulist-tech/domain-input?logo=github)](https://github.com/somnambulist-tech/domain-input/issues)
+[![License](https://img.shields.io/github/license/somnambulist-tech/domain-input?logo=github)](https://github.com/somnambulist-tech/domain-input/blob/master/LICENSE)
+[![PHP Version](https://img.shields.io/packagist/php-v/somnambulist/domain-input?logo=php&logoColor=white)](https://packagist.org/packages/somnambulist/domain-input)
+[![Current Version](https://img.shields.io/packagist/v/somnambulist/domain-input?logo=packagist&logoColor=white)](https://packagist.org/packages/somnambulist/domain-input)
 
 This library provides an abstraction between a request object e.g. Http\Request and your domain entities.
 Instead of passing the request directly, it is converted to a DomainInput object that contains the
