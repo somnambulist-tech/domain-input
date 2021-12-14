@@ -147,7 +147,7 @@ class OrderItemMapper implements DataInputMapperContract
             // item will be an array, convert to collection
             $item = new Immutable($item);
             $orderItem
-                ->setSomeProperty($item->get('some_property))
+                ->setSomeProperty($item->get('some_property'))
                 // ... do other mapping
             ;
         }

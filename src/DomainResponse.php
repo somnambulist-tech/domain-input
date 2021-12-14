@@ -29,14 +29,12 @@ class DomainResponse implements DomainResponseContract
         $this->status   = $status;
     }
 
-    public function __set($name, $value)
+    public function __set($name, $value): void
     {
-
     }
 
-    public function __unset($name)
+    public function __unset($name): void
     {
-
     }
 
     public function data(): Immutable

@@ -32,12 +32,12 @@ class DomainInput implements DomainInputContract
         $this->files  = $files->freeze();
     }
 
-    public function __set($name, $value)
+    public function __set($name, $value): void
     {
 
     }
 
-    public function __unset($name)
+    public function __unset($name): void
     {
 
     }
